@@ -1,637 +1,410 @@
 ---
-# try also 'default' to start simple
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
-title: Welcome to Slidev
+title: Faites parler vos donnees avec le RAG
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply UnoCSS classes to the current slide
-class: text-center
-# https://sli.dev/features/drawing
+  Retour d'experience sur un assistant interne pour une chaine d'hotels.
+  Objectif: rendre les reponses plus fiables grace a un pipeline RAG simple.
+author: Loic BOURG
+class: text-left
+highlighter: shiki
 drawings:
   persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
-# duration of the presentation
-duration: 35min
+duration: 10min
+fonts:
+  sans: IBM Plex Sans
+  serif: Source Serif 4
+  mono: JetBrains Mono
 ---
 
-# Welcome to Slidev
+# Faites parler vos donnees avec le RAG
 
-Presentation slides for developers
+### Comment rendre un assistant interne plus fiable
 
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
+<div class="mt-10 text-sm opacity-80">
+Loic BOURG · Lead Technique IT Network
 </div>
 
-<div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
+<div class="mt-8 text-lg">
+Les LLM repondent vite. <strong>Le RAG les aide a repondre juste.</strong>
 </div>
 
 <!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+0:00 - 0:45
+Promesse du talk + cadre 10 min
 -->
 
 ---
-transition: fade-out
+layout: center
 ---
 
-# What is Slidev?
+# Le probleme metier
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+<div class="mt-8 grid grid-cols-3 gap-6 text-left">
+  <div class="rounded-lg border border-teal-200 bg-teal-50/50 p-4">
+    <div class="text-2xl font-bold">10+</div>
+    <div class="mt-2 text-sm">hotels a operer</div>
+  </div>
+  <div class="rounded-lg border border-teal-200 bg-teal-50/50 p-4">
+    <div class="text-2xl font-bold">Docs utiles</div>
+    <div class="mt-2 text-sm">mais dispersees dans plusieurs sources</div>
+  </div>
+  <div class="rounded-lg border border-teal-200 bg-teal-50/50 p-4">
+    <div class="text-2xl font-bold">Objectif</div>
+    <div class="mt-2 text-sm">accelerer l'autonomie des nouveaux arrivants</div>
+  </div>
+</div>
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
+<div class="mt-8 text-lg">
+Probleme initial: <strong>la recherche classique ne retrouvait pas vite la bonne procedure.</strong>
+</div>
 
 <!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
+0:45 - 1:45
+Contexte concret, pas de jargon
 -->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
-
----
-transition: slide-up
-level: 2
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
-
-## Keyboard Shortcuts
-
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
 
 ---
 layout: two-cols
-layoutClass: gap-16
+layoutClass: gap-10
 ---
 
-# Table of contents
+# D'ou vient la connaissance ?
 
-You can use the `Toc` component to generate a table of contents for your slides:
+<div class="text-lg leading-8">
+Avant de repondre, on doit d'abord <strong>preparer la base de connaissance</strong>.
+</div>
 
-```html
-<Toc minDepth="1" maxDepth="1" />
+```mermaid
+%%{init: {'themeVariables': {'fontSize': '20px'}}}%%
+flowchart LR
+    A[Docs metier<br/>PDF, wiki, process] --> B[Decoupage en chunks]
+    B --> C[Embeddings + metadonnees]
+    C --> D[Index vectoriel]
 ```
 
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
+<div class="mt-5 text-sm opacity-80">
+Ce travail est fait en amont et rejoue a chaque mise a jour documentaire.
+</div>
 
 ::right::
 
-<Toc text-sm minDepth="1" maxDepth="2" />
-
----
-layout: image-right
-image: https://cover.sli.dev
----
-
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover!
-
-```ts [filename-example.ts] {all|4|6|6-7|9|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="342" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
----
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
+<div class="rounded-xl border border-slate-200 bg-white/80 p-5 shadow-sm">
+  <div class="font-semibold">Pourquoi c'est important ?</div>
+  <ul class="mt-4 leading-8">
+    <li>Les reponses viennent de sources internes</li>
+    <li>Le moteur retrouve des passages, pas tout un document</li>
+    <li>Les metadonnees permettent des filtres metier</li>
+  </ul>
 </div>
-<div>
 
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
+<div class="mt-6 rounded-xl border border-amber-200 bg-amber-50/75 p-4 text-sm">
+Sans cette indexation, pas de retrieval fiable.
 </div>
 
 <!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
+1:45 - 2:30
+Expliquer d'ou vient la connaissance avant la requete live
 -->
 
 ---
-class: px-20
+layout: two-cols
+layoutClass: gap-10
 ---
 
-# Themes
+# Parenthese: c'est quoi un embedding ?
 
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
+<div class="text-lg leading-8">
+Un embedding convertit un texte en <strong>vecteur de nombres</strong> qui capture son sens.
 </div>
 
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
-
-<br>
-
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
-</div>
-
----
-
-# Motions
-
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
+<div class="mt-6 rounded-xl border border-teal-200 bg-teal-50/70 p-4">
+  <div class="text-sm opacity-70">Exemple de transformation</div>
+  <div class="mt-2 font-mono text-sm">
+    "sortir les poubelles a HKO" -> [0.12, -0.44, 0.87, ...]
   </div>
 </div>
 
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
-
+<div class="mt-6 text-lg">
+La recherche semantique compare ces vecteurs (similarite cosine), pas seulement des mots exacts.
 </div>
 
+::right::
+
+<div class="rounded-xl border border-slate-200 bg-white/80 p-5 shadow-sm">
+  <div class="font-semibold text-lg">Question utilisateur</div>
+  <div class="mt-2">"Quand sortir les poubelles a HKO ?"</div>
+
+  <div class="mt-5 text-sm uppercase tracking-wider opacity-70">Scores de similarite</div>
+  <div class="mt-3 space-y-2">
+    <div class="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-2">
+      <span>Procedure fermeture HKO</span>
+      <span class="font-semibold text-emerald-700">0.91</span>
+    </div>
+    <div class="flex items-center justify-between rounded-lg bg-sky-50 px-3 py-2">
+      <span>Checklist fin de shift</span>
+      <span class="font-semibold text-sky-700">0.78</span>
+    </div>
+    <div class="flex items-center justify-between rounded-lg bg-slate-100 px-3 py-2">
+      <span>Planning petit-dej</span>
+      <span class="font-semibold text-slate-600">0.22</span>
+    </div>
+  </div>
+</div>
+
+<div class="mt-5 text-sm opacity-80">
+On retient les chunks les plus proches en sens.
+</div>
+
+<!--
+2:30 - 3:15
+Poser la notion d'embedding avant d'attaquer le fil rouge
+-->
+
 ---
 
-# $\LaTeX$
-
-$\LaTeX$ is supported out-of-box. Powered by [$\KaTeX$](https://katex.org/).
-
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
+# Le pipeline en 5 etapes
 
 ```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
+%%{init: {'themeVariables': {'fontSize': '22px'}, 'flowchart': {'nodeSpacing': 34, 'rankSpacing': 42}}}%%
+flowchart LR
+    A[1. Reformulation]
+    B[2. Routage sources]
+    C[3. Filtres metadonnees]
+    D[4. Retrieval + generation]
+    E[5. Evaluation continue]
+    A --> B --> C --> D --> E
+    classDef step fill:#ffffff,stroke:#0f766e,stroke-width:2px,color:#0f172a,font-size:22px,font-weight:700;
+    class A,B,C,D,E step;
 ```
 
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
+<div class="mt-4 text-sm opacity-80">
+Fil rouge du talk: "Quand est-ce que je dois sortir les poubelles a HKO ?"
 </div>
 
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
+<!--
+3:15 - 3:45
+Donner la carte mentale pour la suite
+-->
 
 ---
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
+layout: two-cols
+layoutClass: gap-10
 ---
 
-# Draggable Elements
+# 1) Reformulation
 
-Double-click on the draggable elements to edit their positions.
+<div class="text-sm opacity-80 mb-2">Avant</div>
 
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
+```text
+Quand est-ce que je dois sortir les poubelles a HKO ?
 ```
 
-<br>
+<div class="text-sm opacity-80 mt-5 mb-2">Apres (question augmentee)</div>
 
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <div class="i-carbon:arrow-up" />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
+```text
+Quand est-ce que je dois sortir les poubelles a
+HKO (Hotel Korner Montmartre) ?
 ```
 
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
+::right::
+
+<div class="mt-8">
+  <div class="badge">Glossaire metier</div>
+  <div class="badge">Acronymes internes</div>
+  <div class="badge">Historique conversation</div>
+</div>
+
+<div class="mt-8 text-lg leading-7">
+On clarifie la demande <strong>avant</strong> de chercher des documents.
+</div>
+
+<!--
+3:45 - 4:30
+Montrer que la precision commence ici
+-->
+
+---
+
+# 2) Routage des sources
+
+<div class="mt-5 text-lg">Ne pas chercher partout. Chercher au bon endroit.</div>
+
+<div class="mt-8">
+  <div class="flex flex-wrap gap-3">
+    <div class="badge">Conciergerie</div>
+    <div class="badge">Chambres</div>
+    <div class="badge">Maintenance</div>
+    <div class="badge">Fournisseurs</div>
+    <div class="badge">Connaissances internes</div>
   </div>
-</v-drag>
+</div>
 
-<img v-drag="'square'" src="https://sli.dev/logo.png">
+<div class="mt-8 grid grid-cols-2 gap-6">
+  <div class="rounded-lg border border-amber-200 bg-amber-50 p-4">
+    <div class="font-semibold">Sans routage</div>
+    <div class="mt-2 text-sm">Trop de bruit, moins de precision</div>
+  </div>
+  <div class="rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+    <div class="font-semibold">Avec routage</div>
+    <div class="mt-2 text-sm">Moins de candidats, retrieval plus pertinent</div>
+  </div>
+</div>
 
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
+<!--
+4:30 - 5:15
+Faire comprendre la reduction du bruit
+-->
 
 ---
-src: ./pages/imported-slides.md
-hide: false
----
+
+# 3) Filtres metadonnees
+
+<div class="mt-6 text-lg">
+On extrait des indices de la question pour prefiltrer les chunks.
+</div>
+
+<div class="mt-7 grid grid-cols-3 gap-5">
+  <div class="rounded-lg border border-slate-200 p-4">
+    <div class="text-sm opacity-70">hotel</div>
+    <div class="mt-2 font-semibold">HKO</div>
+  </div>
+  <div class="rounded-lg border border-slate-200 p-4">
+    <div class="text-sm opacity-70">service</div>
+    <div class="mt-2 font-semibold">Housekeeping</div>
+  </div>
+  <div class="rounded-lg border border-slate-200 p-4">
+    <div class="text-sm opacity-70">categorie</div>
+    <div class="mt-2 font-semibold">Procedure de fermeture</div>
+  </div>
+</div>
+
+<div class="mt-8 text-lg">
+Effet: <strong>meilleure precision sans augmenter le cout du modele.</strong>
+</div>
+
+<!--
+5:15 - 6:00
+Levier concret et facile a expliquer
+-->
 
 ---
+# 4) Retrieval + generation
 
-# Monaco Editor
+```py {all|2-3|5-6|8-12|all}
+question = user_question
+q_aug = reformulate_with_glossary(question, glossary, history)
 
-Slidev provides built-in Monaco Editor support.
+source_families = route_sources(q_aug)
+filters = extract_metadata_filters(q_aug)
 
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
+chunks = vector_search(
+    query=q_aug,
+    source_families=source_families,
+    filters=filters,
+    k=6,
+)
+answer = generate_answer(q_aug, chunks, system_prompt)
 ```
 
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
+<div class="mt-4 text-sm">
+Reponse attendue: action claire + citation de source.
+</div>
 
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
+<div class="mt-2 rounded-lg border border-teal-200 bg-teal-50 p-3 text-sm">
+"A HKO, les poubelles sont sorties a 21h30 apres la ronde du soir."
+<br>
+Source: Procedure_HKO_Fermeture_v3.pdf#p2
+</div>
 
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
+<!--
+6:00 - 6:45
+Unique snippet code du talk
+-->
+
+---
+layout: two-cols
+layoutClass: gap-10
+---
+
+# 5) Evaluation continue
+
+<div class="mt-2 text-lg">Ce qui fait progresser le systeme: mesurer, puis corriger.</div>
+
+```mermaid
+flowchart LR
+    S[Question test ou retour utilisateur] --> C{Les bons chunks sont retrouves ?}
+    C -- Non --> R1[Ameliorer retrieval<br/>BM25 hybride / reranker / filtres]
+    C -- Oui --> R2[Ameliorer generation<br/>prompt / nombre de chunks / format reponse]
 ```
+
+::right::
+
+<div class="mt-8 rounded-xl border border-slate-200 bg-white/75 p-5 shadow-sm">
+  <div class="text-xs uppercase tracking-widest opacity-70">Boucle d'amelioration</div>
+  <ul class="mt-3 leading-8">
+    <li>Mesurer sur un dataset de test</li>
+    <li>Analyser les retours utilisateurs</li>
+    <li>Ajuster retrieval et generation separement</li>
+  </ul>
+</div>
+
+<div class="mt-4 text-sm opacity-80">
+Dataset de test + feedback terrain = boucle d'amelioration fiable.
+</div>
+
+<!--
+6:45 - 8:00
+Slide de debug tres pragmatique
+-->
+
+---
+layout: two-cols
+layoutClass: gap-10
+---
+
+# Resultats et limites
+
+## Ce qui a marche
+
+- Acces plus rapide aux procedures internes
+- Assistant plus utile pour l'onboarding
+- Reponses mieux justifiees grace aux citations
+
+::right::
+
+## Ce qui reste difficile
+
+- Qualite et fraicheur des sources
+- Cas metier ambigus ou mal formules
+- Necessite d'une maintenance continue
+
+<div class="mt-8 rounded-lg border border-slate-200 p-3 text-sm">
+Message honnete: le RAG reduit fortement les erreurs, mais ne supprime pas le besoin de pilotage.
+</div>
+
+<!--
+8:00 - 9:00
+Credibilite: benefices + limites
+-->
 
 ---
 layout: center
 class: text-center
 ---
 
-# Learn More
+# Merci
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+## La fiabilite d'un RAG vient du pipeline, pas d'une seule brique.
 
-<PoweredBySlidev mt-10 />
+<div class="mt-8 text-lg">Questions ?</div>
+
+<div class="mt-10 text-sm opacity-70">
+Si utile, je peux partager la grille de debug utilisee en production.
+</div>
+
+<!--
+9:00 - 10:00
+Clore net et ouvrir la Q&A
+-->

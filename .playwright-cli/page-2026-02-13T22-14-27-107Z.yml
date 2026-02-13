@@ -1,0 +1,54 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e8]:
+        - heading "2) Routage des sources" [level=1] [ref=e9]
+        - generic [ref=e10]: Ne pas chercher partout. Chercher au bon endroit.
+        - generic [ref=e11]: ConciergerieChambresMaintenanceFournisseursConnaissances internes
+        - generic [ref=e12]:
+          - generic [ref=e13]:
+            - generic [ref=e14]: Sans routage
+            - generic [ref=e15]: Trop de bruit, moins de precision
+          - generic [ref=e16]:
+            - generic [ref=e17]: Avec routage
+            - generic [ref=e18]: Moins de candidats, retrieval plus pertinent
+      - img
+    - navigation [ref=e20]:
+      - generic [ref=e21]:
+        - button "Enter fullscreen" [ref=e22] [cursor=pointer]:
+          - generic [ref=e23]: Enter fullscreen
+        - button "Go to previous slide" [ref=e25] [cursor=pointer]:
+          - generic [ref=e26]: Go to previous slide
+        - button "Go to next slide" [ref=e28] [cursor=pointer]:
+          - generic [ref=e29]: Go to next slide
+        - button "Show slide overview" [ref=e31] [cursor=pointer]:
+          - generic [ref=e32]: Show slide overview
+        - button "Switch to dark mode theme" [ref=e34] [cursor=pointer]:
+          - generic [ref=e35]: Switch to dark mode theme
+          - img [ref=e36]
+        - button "Toggle camera view" [ref=e39] [cursor=pointer]:
+          - generic [ref=e40]: Toggle camera view
+        - button "Record video" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: Record video
+        - button "Select recording device" [ref=e46] [cursor=pointer]:
+          - button "Select recording device" [ref=e47]:
+            - generic [ref=e48]: Select recording device
+        - button "Show drawing toolbar" [ref=e51] [cursor=pointer]:
+          - generic [ref=e52]: Show drawing toolbar
+        - button "Presenter Mode" [ref=e55] [cursor=pointer]:
+          - generic [ref=e56]: Presenter Mode
+        - button "Show editor" [ref=e58] [cursor=pointer]:
+          - generic [ref=e59]: Show editor
+        - link "Browser Exporter" [ref=e61] [cursor=pointer]:
+          - /url: /export
+          - generic [ref=e62]: Browser Exporter
+        - button "Show info" [ref=e64] [cursor=pointer]:
+          - generic [ref=e65]: Show info
+        - button "Change sync settings" [ref=e69] [cursor=pointer]:
+          - button "Change sync settings" [ref=e70]:
+            - generic [ref=e71]: Change sync settings
+        - button "More Options" [ref=e75] [cursor=pointer]:
+          - button "More Options" [ref=e76]:
+            - generic [ref=e77]: More Options
+        - generic [ref=e80]: 6 / 11
+  - textbox "Goto..." [disabled] [ref=e83]

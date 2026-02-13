@@ -1,0 +1,70 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e8]:
+          - generic [ref=e9]:
+            - heading "1) Reformulation" [level=1] [ref=e10]
+            - generic [ref=e11]: Avant
+            - generic [ref=e12]:
+              - code [ref=e14]:
+                - generic [ref=e15]: Quand est-ce que je dois sortir les poubelles a HKO ?
+              - button "Copy" [ref=e16] [cursor=pointer]:
+                - img [ref=e17]
+            - generic [ref=e19]: Apres (question augmentee)
+            - generic [ref=e20]:
+              - code [ref=e22]:
+                - generic [ref=e23]: Quand est-ce que je dois sortir les poubelles a
+                - generic [ref=e24]: HKO (Hotel Korner Montmartre) ?
+              - button "Copy" [ref=e25] [cursor=pointer]:
+                - img [ref=e26]
+          - generic [ref=e28]:
+            - generic [ref=e29]:
+              - generic [ref=e30]: Glossaire metier
+              - generic [ref=e31]: Acronymes internes
+              - generic [ref=e32]: Historique conversation
+            - generic [ref=e33]:
+              - text: On clarifie la demande
+              - strong [ref=e34]: avant
+              - text: de chercher des documents.
+        - img
+      - navigation [ref=e36]:
+        - generic [ref=e37]:
+          - button "Enter fullscreen" [ref=e38] [cursor=pointer]:
+            - generic [ref=e39]: Enter fullscreen
+          - button "Go to previous slide" [ref=e41] [cursor=pointer]:
+            - generic [ref=e42]: Go to previous slide
+          - button "Go to next slide" [ref=e44] [cursor=pointer]:
+            - generic [ref=e45]: Go to next slide
+          - button "Show slide overview" [ref=e47] [cursor=pointer]:
+            - generic [ref=e48]: Show slide overview
+          - button "Switch to dark mode theme" [ref=e50] [cursor=pointer]:
+            - generic [ref=e51]: Switch to dark mode theme
+            - img [ref=e52]
+          - button "Toggle camera view" [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]: Toggle camera view
+          - button "Record video" [ref=e58] [cursor=pointer]:
+            - generic [ref=e59]: Record video
+          - button "Select recording device" [ref=e62] [cursor=pointer]:
+            - button "Select recording device" [ref=e63]:
+              - generic [ref=e64]: Select recording device
+          - button "Show drawing toolbar" [ref=e67] [cursor=pointer]:
+            - generic [ref=e68]: Show drawing toolbar
+          - button "Presenter Mode" [ref=e71] [cursor=pointer]:
+            - generic [ref=e72]: Presenter Mode
+          - button "Show editor" [ref=e74] [cursor=pointer]:
+            - generic [ref=e75]: Show editor
+          - link "Browser Exporter" [ref=e77] [cursor=pointer]:
+            - /url: /export
+            - generic [ref=e78]: Browser Exporter
+          - button "Show info" [ref=e80] [cursor=pointer]:
+            - generic [ref=e81]: Show info
+          - button "Change sync settings" [ref=e85] [cursor=pointer]:
+            - button "Change sync settings" [ref=e86]:
+              - generic [ref=e87]: Change sync settings
+          - button "More Options" [ref=e91] [cursor=pointer]:
+            - button "More Options" [ref=e92]:
+              - generic [ref=e93]: More Options
+          - generic [ref=e96]: 5 / 11
+    - textbox "Goto..." [disabled] [ref=e99]
+  - img [ref=e102]

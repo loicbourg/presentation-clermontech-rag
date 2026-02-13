@@ -1,0 +1,33 @@
+- generic [ref=e2]:
+  - navigation [ref=e6]:
+    - generic [ref=e7]:
+      - button "Enter fullscreen" [ref=e8] [cursor=pointer]:
+        - generic [ref=e9]: Enter fullscreen
+      - button "Go to previous slide" [ref=e11] [cursor=pointer]:
+        - generic [ref=e12]: Go to previous slide
+      - button "Go to next slide" [ref=e14] [cursor=pointer]:
+        - generic [ref=e15]: Go to next slide
+      - button "Show slide overview" [ref=e17] [cursor=pointer]:
+        - generic [ref=e18]: Show slide overview
+      - button "Switch to dark mode theme" [ref=e20] [cursor=pointer]:
+        - generic [ref=e21]: Switch to dark mode theme
+        - img [ref=e22]
+      - button "Show drawing toolbar" [ref=e25] [cursor=pointer]:
+        - generic [ref=e26]: Show drawing toolbar
+      - button "Presenter Mode" [ref=e29] [cursor=pointer]:
+        - generic [ref=e30]: Presenter Mode
+      - button "Show editor" [ref=e32] [cursor=pointer]:
+        - generic [ref=e33]: Show editor
+      - link "Browser Exporter" [ref=e35] [cursor=pointer]:
+        - /url: /export
+        - generic [ref=e36]: Browser Exporter
+      - button "Show info" [ref=e38] [cursor=pointer]:
+        - generic [ref=e39]: Show info
+      - button "Change sync settings" [ref=e43] [cursor=pointer]:
+        - button "Change sync settings" [ref=e44]:
+          - generic [ref=e45]: Change sync settings
+      - button "More Options" [ref=e49] [cursor=pointer]:
+        - button "More Options" [ref=e50]:
+          - generic [ref=e51]: More Options
+      - generic [ref=e54]: 4 / 12
+  - textbox "Goto..." [disabled] [ref=e57]

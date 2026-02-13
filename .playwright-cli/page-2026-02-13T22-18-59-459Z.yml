@@ -1,0 +1,43 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - img
+    - navigation [ref=e9]:
+      - generic [ref=e10]:
+        - button "Enter fullscreen" [ref=e11] [cursor=pointer]:
+          - generic [ref=e12]: Enter fullscreen
+        - button "Go to previous slide" [ref=e14] [cursor=pointer]:
+          - generic [ref=e15]: Go to previous slide
+        - button "Go to next slide" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: Go to next slide
+        - button "Show slide overview" [ref=e20] [cursor=pointer]:
+          - generic [ref=e21]: Show slide overview
+        - button "Switch to dark mode theme" [ref=e23] [cursor=pointer]:
+          - generic [ref=e24]: Switch to dark mode theme
+          - img [ref=e25]
+        - button "Toggle camera view" [ref=e28] [cursor=pointer]:
+          - generic [ref=e29]: Toggle camera view
+        - button "Record video" [ref=e31] [cursor=pointer]:
+          - generic [ref=e32]: Record video
+        - button "Select recording device" [ref=e35] [cursor=pointer]:
+          - button "Select recording device" [ref=e36]:
+            - generic [ref=e37]: Select recording device
+        - button "Show drawing toolbar" [ref=e40] [cursor=pointer]:
+          - generic [ref=e41]: Show drawing toolbar
+        - button "Presenter Mode" [ref=e44] [cursor=pointer]:
+          - generic [ref=e45]: Presenter Mode
+        - button "Show editor" [ref=e47] [cursor=pointer]:
+          - generic [ref=e48]: Show editor
+        - link "Browser Exporter" [ref=e50] [cursor=pointer]:
+          - /url: /export
+          - generic [ref=e51]: Browser Exporter
+        - button "Show info" [ref=e53] [cursor=pointer]:
+          - generic [ref=e54]: Show info
+        - button "Change sync settings" [ref=e58] [cursor=pointer]:
+          - button "Change sync settings" [ref=e59]:
+            - generic [ref=e60]: Change sync settings
+        - button "More Options" [ref=e64] [cursor=pointer]:
+          - button "More Options" [ref=e65]:
+            - generic [ref=e66]: More Options
+        - generic [ref=e69]: 11 / 12
+  - textbox "Goto..." [disabled] [ref=e72]

@@ -1,0 +1,65 @@
+:root {
+  --slidev-theme-primary: #0f766e;
+  --brand-ink: #0f172a;
+  --brand-muted: #475569;
+  --brand-card: #ffffffcc;
+}
+
+.slidev-layout {
+  background:
+    radial-gradient(1200px 500px at 12% -10%, #ccfbf1 0%, transparent 55%),
+    radial-gradient(900px 450px at 100% 0%, #dbeafe 0%, transparent 50%),
+    #f8fafc;
+  color: var(--brand-ink);
+}
+
+.slidev-layout h1 {
+  color: #0f766e;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.slidev-layout h2,
+.slidev-layout h3 {
+  color: #0f172a;
+}
+
+.slidev-layout p,
+.slidev-layout li {
+  color: #0f172a;
+}
+
+.slidev-layout strong {
+  color: #0f766e;
+  font-weight: 700;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid #5eead4;
+  background: linear-gradient(180deg, #f0fdfa 0%, #ccfbf1 100%);
+  box-shadow: 0 10px 30px -24px #0f766e;
+  color: #134e4a;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.5rem 0.9rem;
+  white-space: nowrap;
+}
+
+.slidev-layout .rounded-lg,
+.slidev-layout .rounded-xl,
+.slidev-layout pre {
+  border-radius: 14px;
+}
+
+.slidev-layout pre {
+  border: 1px solid #dbe4ef;
+}
+
+.slidev-layout .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
