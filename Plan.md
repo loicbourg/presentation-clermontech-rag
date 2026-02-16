@@ -32,7 +32,7 @@ Loïc BOURG ITNetwork lead technique
 ## Le besoin 
 
 chaine d'hôtels d'environ 10 hôtels en france souhaitant grossir
-Besoin de faciliter l'accés au procédure et d'augmenter l'autonomie des nouveaux arrivants.
+Besoin d'augmenter l'autonomie des nouveaux arrivants.
 Une documentation de qualité mais pas suffisament utilisée à cause de la diversité des sources et de la mauvaise qualité de la recherche sur l'application
 
 
@@ -140,3 +140,17 @@ Quelque chose qui marche pas mal => Recréer la même converstation et demander 
 
 
 ## Questions ?
+
+
+
+TODO:
+- graph mermaid moins moches
+- liste à puce dans les default centré mieux affichée
+- Première slide moins moche
+- Présentation avec logo ITN
+- Slide conclusion à retravailler
+- Vérifier si je peux avoir le cout moyen d'une question
+- v clicks manquant sur certaines slide (notament conclusion)
+
+
+Premier test à vide: 8mn20secondes
