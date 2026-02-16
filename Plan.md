@@ -144,13 +144,19 @@ Quelque chose qui marche pas mal => Recréer la même converstation et demander 
 
 
 TODO:
-- graph mermaid moins moches
-- liste à puce dans les default centré mieux affichée
-- Première slide moins moche
-- Présentation avec logo ITN
-- Slide conclusion à retravailler
-- Vérifier si je peux avoir le cout moyen d'une question
-- v clicks manquant sur certaines slide (notament conclusion)
+- [x] graph mermaid moins moches
+- [x] liste à puce dans les default centré mieux affichée
+- [x] v clicks manquant sur certaines slide (notament conclusion)
+- [x] numéro de page
+- [x] modifier question opéra => hotel opéra
+- [x] changer température ?
+- [x] beaucoup faute
+- [x] Première slide moins moche
+- [x] Présentation avec logo ITN
+- [x] Slide conclusion à retravailler
+- [x] Vérifier si je peux avoir le cout moyen d'une question (openAI: ~ 1.5 centimes par question, cohere: 0.2 centimes par question) 
+- [x] réduire "si ca répond mal"
 
 
 Premier test à vide: 8mn20secondes
+test devant l'équipe: 15mn50secondes

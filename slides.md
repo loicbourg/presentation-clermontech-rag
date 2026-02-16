@@ -1,6 +1,7 @@
 ---
-layout: intro
-#image: /img/devenv-dark-bg.svg
+layout: cover
+#  Photo de <a href="https://unsplash.com/fr/@daria_kraplak?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Daria Kraplak</a> sur <a href="https://unsplash.com/fr/photos/black-typewriter-d34DtRp1bqo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+background: /img/cover.jpg
 theme: seriph
 #backgroundSize: contain
 title: Faites parler vos données avec le RAG
@@ -42,7 +43,7 @@ layout: center
 
 
 ---
-layout: cover
+layout: default
 ---
 
 
@@ -50,7 +51,7 @@ layout: cover
 ```mermaid
 graph LR
     U[Utilisateur] -- "1. Question" --> S[Backend RAG]
-    S -- "2. recherche vectorielle" --> D[(BDD vectorielle)]
+    S -- "2. Recherche vectorielle" --> D[(BDD vectorielle)]
     D -- "3. Documents pertinents" --> S
     S -- "4. Contexte + question" --> L[LLM]
     L -- "5. Réponse (avec citations)" --> S
@@ -66,9 +67,9 @@ layout: center
 
 <v-clicks>
 
-- Chaine d'hôtels d'environ 10 hôtels en france souhaitant grossir
+- Chaîne d'hôtels d'environ 10 hôtels en France souhaitant grossir
 - Besoin d'augmenter l'autonomie des nouveaux arrivants.
-- Beucoup de documentation mais dans différentes applications
+- Beaucoup de documentation mais dans différentes applications
 
 </v-clicks>
 
@@ -77,7 +78,7 @@ layout: default
 ---
 
 # Recherche vectorielle
-Quand est-ce que je dois sortir les poubelles à opéra ?
+Quand est-ce que je dois sortir les poubelles à l'hôtel opéra ?
 
 ---
 layout: center
@@ -87,9 +88,9 @@ layout: center
 
 <v-clicks>
 
-- Découpage des longs documents en petits morceaux ("chunk")
-- Ajout de metadata à l'intérieur des chunk
-- Embedding des chunk
+- Découpage des longs documents en petits morceaux ("chunks")
+- Ajout de métadonnées à l'intérieur des chunks
+- Génération des embeddings des chunks
 - Insertion
 
 </v-clicks>
@@ -129,18 +130,21 @@ print("sim(A, C) =", sim_AC)  # -> 0.293
 ```
 
 ---
-lineNumbers: true
 layout: default
 ---
 
 # Recherche vectorielle
-Quand est-ce que je dois sortir les poubelles à opéra ?
+Quand est-ce que je dois sortir les poubelles à l'hôtel opéra ?
 
-<div class="flex items-center justify-center h-60 text-center">
+<div class="flex items-center justify-center h-60">
+<div class="text-left">
+<v-clicks>
 
 - Embedding de la question
-- Recherche des "chunk" les plus proches au niveau sémantique de la question
+- Recherche des "chunks" les plus proches au niveau sémantique de la question
 
+</v-clicks>
+</div>
 </div>
 
 ---
@@ -164,7 +168,7 @@ layout: default
 
 ```md
 ---
-titre: "Opéra: les informations de base"
+titre: "Hôtel opéra: les informations de base"
 auteur: "Service Exploitation"
 lien: "https://www.doc-interne.com/korner-opera/informations-generales"
 ---
@@ -186,15 +190,21 @@ layout: default
 ---
 
 # Génération de la réponse
-Quand est-ce que je dois sortir les poubelles à opéra ?
+Quand est-ce que je dois sortir les poubelles à l'hôtel opéra ?
 
 
 <div class="flex items-center justify-center h-60 text-center">
 
+<div class="flex items-center justify-center h-60">
+<div class="text-left">
+<v-clicks>
 
-- On envoi le prompt systéme et les chunk au llm
-- On renvoi la réponse à l'utilisateur
+- On envoie le prompt système et les chunks au LLM
+- On renvoie la réponse à l'utilisateur
 
+</v-clicks>
+</div>
+</div>
 
 </div>
 
@@ -210,7 +220,7 @@ Règles :
 - Réponds uniquement à partir des CHUNKS fournis. N’invente rien.
 - Si l’info n’est pas dans les CHUNKS, dis "Je ne sais pas".
 - À la fin, ajoute une section "Sources" avec des liens Markdown.
-  Format attendu : - [Titre du chunk](source_url) (ou [Chunk <id>](source_url) si pas de titre)
+Format attendu : - [Titre du chunk](source_url) (ou [Chunk <id>](source_url) si le titre est absent)
 """
 
 messages = [
@@ -218,7 +228,7 @@ messages = [
     {"role": "user", "content": f"Question: {question}\n\nCHUNKS:\n{context}"},
 ]
 
-response = LLM.generate(messages=messages, temperature=0.0)
+response = LLM.generate(messages=messages, temperature=0.1)
 ```
 
 
@@ -227,14 +237,14 @@ layout: default
 ---
 
 ```markdown
-Les poubelles à l'Hôtel Korner Opéra doivent être sorties selon le calendrier suivant :
+Les poubelles à l'Hôtel Opéra doivent être sorties selon le calendrier suivant :
 
 Poubelle verte/grise : Tous les jours à 16h devant l'hôtel.
 Poubelle jaune : Lundi, mercredi et vendredi à 16h devant l'hôtel.
 Conteneur à verre : Derrière le bâtiment en face de l'hôtel.
 
 ## Sources
-- [Opéra: les informations de base](https://www.doc-interne.com/korner-opera/informations-generales)
+- [Hôtel opéra: les informations de base](https://www.doc-interne.com/opera/informations-generales)
 
 ```
 
@@ -242,7 +252,7 @@ Conteneur à verre : Derrière le bâtiment en face de l'hôtel.
 layout: two-cols-header
 ---
 
-# Et si ca répond mal ?
+# Et si ça répond mal ?
 
 ::left::
 
@@ -253,14 +263,13 @@ layout: two-cols-header
 </v-click>
 <v-clicks>
 
-- Jouer sur le nombre de chunk récupéré
+- Jouer sur le nombre de chunks récupérés
 - Augmenter la question avec un glossaire pour le jargon interne
 - Passer en recherche hybride (vectoriel + textuel)
 - Ajouter un reranker
-- Ajouter du filtrage par metadata
-- Réduire la quantité de chunk
-- Passer en mode "Agentic"
-
+- Ajouter du filtrage par métadonnées
+- Réduire le nombre de chunks en base
+- ...
 
 </v-clicks>
 
@@ -274,9 +283,10 @@ layout: two-cols-header
 
 <v-clicks>
 
-- Réduire le nombre de chunk
+- Réduire le nombre de chunk récupéré (top K)
 - Changer de modèle
 - Modifier le prompt système
+- ...
 
 </v-clicks>
 
@@ -293,9 +303,13 @@ layout: center
 
 # Conclusion
 
-- Systéme en production depuis 1.5 ans utilisé quotidiennement
+<v-clicks>
+
+- Système en production depuis 1,5 ans utilisé quotidiennement
 - Amélioration notable de la facilité à aller chercher des informations
-- Beaucoup de temps passé à toucher aux différents paramétres
+- Beaucoup de temps passé à toucher aux différents paramètres
+
+</v-clicks>
 
 ---
 layout: center
