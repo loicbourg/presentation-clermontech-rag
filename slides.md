@@ -301,18 +301,4 @@ layout: two-cols-header
 layout: center
 ---
 
-# Conclusion
-
-<v-clicks>
-
-- Système en production depuis 1,5 ans utilisé quotidiennement
-- Amélioration notable de la facilité à aller chercher des informations
-- Beaucoup de temps passé à toucher aux différents paramètres
-
-</v-clicks>
-
----
-layout: center
----
-
 # Questions ?
